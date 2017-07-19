@@ -49,7 +49,7 @@ public class Cliente {
         for(Venda venda : vendas){
                 if(venda.getNumero().equals(msg)){
                 msg2+=venda.exibirEspecifico(cli);
-                msg2+="\n";
+            
                 aux=true;
             }
         }

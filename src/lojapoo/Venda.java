@@ -57,7 +57,7 @@ public class Venda {
     }
     
     public String exibirEspecifico(Cliente cli){
-        String msg="\n";
+        String msg="";
         for(Item item : itens){
             msg+=cli.dadosCliente();
             msg+=exibirDados();
@@ -74,7 +74,7 @@ public class Venda {
         return msg;
     }
     public String buscaTipoPagamento(int tipo){
-        String msg="\n";
+        String msg="";
         for(Item item : itens){
             msg+=item.dadosItem();
             msg+=buscaTipoPagamentoSimp(tipo);
@@ -82,27 +82,27 @@ public class Venda {
         return msg;
     }
     public String buscaTipoPagamentoSimp(int tipo){
-        String msg2="";
+        String msg2;
         Dinheiro auxdinheiro;
         Cheque auxcheque;
         Cartao auxcartao;
-        msg2+="\nData "+getData();
+        msg2="\nData "+getData();
         switch(tipo){
             case 1:
-                if(tipoPago.getTipoPagamento().equals("dinheiro")){
+                if(tipoPago.getTipoPagamento().equals("Dinheiro")){
                     auxdinheiro=(Dinheiro) tipoPago; 
                     msg2+="\nQuantia Recebida R$ "+auxdinheiro.getQuantia();
                     msg2+="\nTroco R$ ";
                 }
                 break;
             case 2:
-                if(tipoPago.getTipoPagamento().equals("cartao")){
+                if(tipoPago.getTipoPagamento().equals("Cartao")){
                     auxcartao= (Cartao) tipoPago;
                     msg2+=auxcartao.exibirDados();
                 }
                 break;
             case 3:
-                if(tipoPago.getTipoPagamento().equals("cheque")){
+                if(tipoPago.getTipoPagamento().equals("Cheque")){
                 auxcheque=(Cheque) tipoPago;
                 msg2+=auxcheque.exibirDados();
                 }

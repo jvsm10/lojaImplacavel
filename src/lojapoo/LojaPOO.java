@@ -167,6 +167,8 @@ public class LojaPOO {
                                    switch(opcao2){
                                        case 1:
                                             codigo = JOptionPane.showInputDialog("Codigo do Produto Nacional");
+                                            pro=Produto.procurarProduto(produtos, codigo);
+                                            if(pro!= null){ JOptionPane.showMessageDialog(null, "Produto Ja Cadastrado");break;}
                                             desc =(JOptionPane.showInputDialog("Descricao do Produto Nacional"));
                                             valor =Float.parseFloat(JOptionPane.showInputDialog("Valor Produto Nacional"));
                                             taxaImposto =Float.parseFloat(JOptionPane.showInputDialog("Taxa Imposto Produto Nacional"));
@@ -175,6 +177,8 @@ public class LojaPOO {
                                             break;
                                        case 2:
                                             codigo = JOptionPane.showInputDialog("Codigo do Produto Importado");
+                                            pro=Produto.procurarProduto(produtos, msg);
+                                            if(pro!= null){ JOptionPane.showMessageDialog(null, "Produto Ja Cadastrado");break;}
                                             desc =(JOptionPane.showInputDialog("Descricao do Produto Importado"));
                                             valor =Float.parseFloat(JOptionPane.showInputDialog("Valor Produto Importado"));
                                             taxaImposto =Float.parseFloat(JOptionPane.showInputDialog("Taxa Imposto Produto Importado"));
@@ -322,6 +326,7 @@ public class LojaPOO {
                                opcao2 = menuCartao();
                                msg="";
                                for(Cliente cliente: clientes){
+                                   msg+="\n";
                                    msg+=cliente.buscaTipoPagamentoSimp(opcao2);
                                }
                                rel = new JanelaRelatorio(msg);
