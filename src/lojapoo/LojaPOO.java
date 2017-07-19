@@ -108,7 +108,7 @@ public class LojaPOO {
             String opc= JOptionPane.showInputDialog(menu);
             if(opc == null) return 4;
             opcao=Integer.parseInt(opc);
-            if(opcao<1 && opcao>3) continua=true;
+            if(opcao>=1 && opcao<=3) continua=false;
         }while(continua);
         return opcao;
     }
@@ -318,6 +318,7 @@ public class LojaPOO {
                                break;
                            case 8:
                                opcao2 = menuCartao();
+                               msg="";
                                for(Cliente cliente: clientes){
                                    msg+=cliente.buscaTipoPagamentoSimp(opcao2);
                                }
