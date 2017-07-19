@@ -57,7 +57,7 @@ public class Venda {
     }
     
     public String exibirEspecifico(Cliente cli){
-        String msg="";
+        String msg="\n";
         for(Item item : itens){
             msg+=cli.dadosCliente();
             msg+=exibirDados();
@@ -73,7 +73,14 @@ public class Venda {
                 "\nValor Total "+calcularTotal();
         return msg;
     }
-    
+    public String buscaTipoPagamento(int tipo){
+        String msg="\n";
+        for(Item item : itens){
+            msg+=item.dadosItem();
+            msg+=buscaTipoPagamentoSimp(tipo);
+        }
+        return msg;
+    }
     public String buscaTipoPagamentoSimp(int tipo){
         String msg2="";
         Dinheiro auxdinheiro;

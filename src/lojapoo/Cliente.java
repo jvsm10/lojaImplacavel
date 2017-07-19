@@ -44,7 +44,7 @@ public class Cliente {
     }
     public String procurarVenda(Cliente cli, String msg ){
         String msg2="Venda Especifica";
-        msg2+="\n";
+        msg2+="";
         Boolean aux=false;
         for(Venda venda : vendas){
                 if(venda.getNumero().equals(msg)){
@@ -94,7 +94,7 @@ public class Cliente {
         String msg="";
         for(Venda venda: vendas){
             msg+=dadosCliente();
-            msg+=venda.buscaTipoPagamentoSimp(tipo);
+            msg+=venda.buscaTipoPagamento(tipo);
         }
         return msg;
     } 

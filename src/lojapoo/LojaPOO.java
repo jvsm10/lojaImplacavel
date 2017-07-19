@@ -154,6 +154,8 @@ public class LojaPOO {
                        switch(opcao2){
                            case 1:
                                nome = JOptionPane.showInputDialog("Insira o nome do Cliente");
+                               cli=Cliente.procurarCliente(clientes,nome);
+                               if(cli!= null){ JOptionPane.showMessageDialog(null, "Cliente Ja Cadastrado");break;}
                                cpf =(JOptionPane.showInputDialog("Insira CPF"));
                                Cliente cl = new Cliente(nome, cpf);
                                clientes.add(cl);  
@@ -309,7 +311,7 @@ public class LojaPOO {
                                msg=JOptionPane.showInputDialog("\nInsira o Codigo da Venda");
                                String msg2=null;
                                for(Cliente cliente: clientes){
-                                   msg2+="\n";
+                                   msg2+="\n\n";
                                    msg2+=cliente.procurarVenda(cliente, msg);
                                }
                                if(msg2==null){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
