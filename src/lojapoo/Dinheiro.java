@@ -5,11 +5,13 @@
  */
 package lojapoo;
 
+
+
 /**
  *
  * @author MrFELIS
  */
-public class Dinheiro extends TipoPagamento {
+public class Dinheiro extends TipoPagamento{
     private float quantia;
     public Dinheiro( float quantia) {
         this.tipoPagamento="Dinheiro";

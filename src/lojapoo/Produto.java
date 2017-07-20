@@ -5,13 +5,14 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author MrFELIS
  */
-abstract class Produto {
+abstract class Produto implements Serializable {
     protected String codigo;
     protected String descricao;
     protected float valor;

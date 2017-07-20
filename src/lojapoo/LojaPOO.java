@@ -5,9 +5,11 @@
  */
 package lojapoo;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author MrFELIS
  */
-public class LojaPOO {
+public class LojaPOO{
 
     private static int menu(){
         int opcao;
@@ -112,7 +114,7 @@ public class LojaPOO {
         }while(continua);
         return opcao;
     }
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         // TODO code application logic here
         //===VARIAVEIS DE CONTROLE====//
         Boolean continua;
@@ -362,6 +364,61 @@ public class LojaPOO {
                //===========================CASE 4=====================================================
                case 4:
                    
+                   if(clientes.isEmpty() && produtos.isEmpty()){
+                       JOptionPane.showMessageDialog(null, "NÂO HÁ CLIENTES E PRODUTOS CADASTRADOS!\n CADASTRE ANTES PARA SALVAR");
+                   }
+                   
+                   if(clientes.isEmpty() == false){
+                        FileOutputStream fos = new FileOutputStream("clientes.dat");
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+         
+                        oos.writeInt(clientes.size());
+                        for(int i = 0; i<clientes.size();i++){
+                            oos.writeObject(clientes.get(i));
+                        }
+                        fos.close();
+                   }
+                   if(produtos.isEmpty() == false){
+                       
+                      FileOutputStream fos = new FileOutputStream("produtos.dat");
+                       ObjectOutputStream oos = new ObjectOutputStream(fos);
+   
+                        oos.writeInt(produtos.size());
+                        for(int i = 0; i<produtos.size();i++){
+                            oos.writeObject(produtos.get(i));
+                        }
+                        fos.close();
+                   };
+                   
+                  
+                   JOptionPane.showMessageDialog(null, "DADOS SALVOS COM SUCESSO!");
+                   
+                   break;
+                   
+              //===========================CASE 5=====================================================
+               case 5:
+      
+                   FileInputStream fis = new FileInputStream("clientes.dat");
+                   ObjectInputStream ois = new ObjectInputStream(fis);
+                   
+                   int numClientes = ois.readInt();
+                   for(int i=0;i<numClientes;i++){
+                       cli = (Cliente)ois.readObject();
+                       clientes.add(i, cli);
+                   }
+                   fis.close();
+                   
+                   fis = new FileInputStream("produtos.dat");
+                   ois = new ObjectInputStream(fis);
+                   
+                   int numProdutos = ois.readInt();
+                   for(int i=0;i<numProdutos;i++){
+                       pro = (Produto)ois.readObject();
+                       produtos.add(i, pro);
+                   }
+                   fis.close();
+                   
+                   JOptionPane.showMessageDialog(null, "DADOS CARREGADOS COM SUCESSO!");
                    break;
                case 6:
                    continua=false;
@@ -369,6 +426,6 @@ public class LojaPOO {
            }
         }while(continua);
     
-        //ola
+        //testandoz\z\
 }
 }

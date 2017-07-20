@@ -5,6 +5,7 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author MrFELIS
  */
-public class Cliente {
+public class Cliente implements Serializable {
     private String cpf;
     private String nome;
     private ArrayList<Venda> vendas;
