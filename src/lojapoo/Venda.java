@@ -5,6 +5,7 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -12,23 +13,31 @@ import java.util.Calendar;
  *
  * @author MrFELIS
  */
-public class Venda {
+public class Venda implements Serializable {
     private String numero;
     private ArrayList<Item> itens;
     private TipoPagamento tipoPago;
     private Cliente cliente;
     private Calendar data;
     
-    public Venda(String numero, TipoPagamento tipoPago, Cliente cliente, Calendar data) {
-        this.numero = numero;
-        this.tipoPago = tipoPago;
-        this.cliente = cliente;
-        this.data = data;
-        itens = new ArrayList<>();
-    
-    }
     public Venda(){
-        
+        itens = new ArrayList<>();
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setTipoPago(TipoPagamento tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
     }
 
     public String getNumero() {

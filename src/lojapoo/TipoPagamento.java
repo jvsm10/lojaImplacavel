@@ -5,13 +5,14 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author MrFELIS
  */
-abstract class TipoPagamento {
+abstract class TipoPagamento implements Serializable {
     protected String tipoPagamento;
     
     public String getTipoPagamento() {
@@ -23,7 +24,7 @@ abstract class TipoPagamento {
     } 
     abstract String exibirDados();
     
-    public static TipoPagamento tipo(){
+    public static TipoPagamento tipo(float total){
         Boolean continua;
         int opcao;
         String msg, msg2;
