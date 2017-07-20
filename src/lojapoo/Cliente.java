@@ -90,6 +90,12 @@ public class Cliente {
     
         public String buscaTipoPagamentoSimp(int tipo){
         String msg="";
+        ArrayList<Venda> listaVenda = new ArrayList<>();
+        if(tipo==1) listaVenda=tipoPago("Dinheiro");
+        else if(tipo==2) listaVenda=tipoPago("Cartao");
+        else if(tipo==3) listaVenda=tipoPago("Cheque");
+        if(listaVenda.isEmpty()) return msg="";
+        msg="\n";
         for(Venda venda: vendas){
             msg+=dadosCliente();
             msg+=venda.buscaTipoPagamentoSimp(tipo);
@@ -98,8 +104,14 @@ public class Cliente {
     } 
         
     public String buscaTipoPagamentoDetalhado(int tipo){
-        String msg="";
+        String msg;
         ArrayList<Venda> vendaPag = new ArrayList<>();
+        ArrayList<Venda> listaVenda = new ArrayList<>();
+        if(tipo==1) listaVenda=tipoPago("Dinheiro");
+        else if(tipo==2) listaVenda=tipoPago("Cartao");
+        else if(tipo==3) listaVenda=tipoPago("Cheque");
+        if(listaVenda.isEmpty()) return msg="";
+        msg="\n";
         for(Venda venda: vendas){
             msg+=dadosCliente();
             msg+=venda.buscaTipoPagamentoDetalhado(tipo);
@@ -108,7 +120,7 @@ public class Cliente {
     }   
     
 
-    public ArrayList tipoPago(TipoPagamento pago){
+    public ArrayList tipoPago(String pago){
         ArrayList<Venda> listaVenda = new ArrayList<>();
         for(Venda venda: vendas){
             if(venda.getTipoPago().getTipoPagamento().equals(pago))

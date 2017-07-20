@@ -318,7 +318,7 @@ public class LojaPOO {
                                    msg2+="\n\n";
                                    msg2+=cliente.buscaEspecifica(msg);
                                }
-                               if(msg2==null){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
+                               if(msg2==""){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
                                rel = new JanelaRelatorio(msg2);
                                rel.exibir();
                                break;
@@ -326,9 +326,10 @@ public class LojaPOO {
                                opcao2 = menuCartao();
                                msg="";
                                for(Cliente cliente: clientes){
-                                   msg+="\n";
+                                   
                                    msg+=cliente.buscaTipoPagamentoSimp(opcao2);
                                }
+                               if(msg==""){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
                                break;
@@ -337,9 +338,10 @@ public class LojaPOO {
                                msg="";
                                
                                for(Cliente cliente: clientes){
-                                   msg+="\n";
+                                   
                                    msg+=cliente.buscaTipoPagamentoDetalhado(opcao2);
                                }
+                               if(msg==""){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
                                break;
