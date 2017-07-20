@@ -342,6 +342,10 @@ public class LojaPOO{
                //===========================CASE 4=====================================================
                case 4:
                    
+                   if(clientes.isEmpty() && produtos.isEmpty()){
+                       JOptionPane.showMessageDialog(null, "NÂO HÁ CLIENTES E PRODUTOS CADASTRADOS!\n CADASTRE ANTES PARA SALVAR");
+                   }
+                   
                    if(clientes.isEmpty() == false){
                         FileOutputStream fos = new FileOutputStream("clientes.dat");
                         ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -365,6 +369,8 @@ public class LojaPOO{
                    };
                    
                   
+                   JOptionPane.showMessageDialog(null, "DADOS SALVOS COM SUCESSO!");
+                   
                    break;
                    
               //===========================CASE 5=====================================================
@@ -390,7 +396,7 @@ public class LojaPOO{
                    }
                    fis.close();
                    
-                   
+                   JOptionPane.showMessageDialog(null, "DADOS CARREGADOS COM SUCESSO!");
                    break;
                case 6:
                    continua=false;
