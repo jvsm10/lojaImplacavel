@@ -5,13 +5,14 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author MrFELIS
  */
-abstract class TipoPagamento {
+abstract class TipoPagamento implements Serializable {
     protected String tipoPagamento;
     
     public String getTipoPagamento() {

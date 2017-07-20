@@ -5,6 +5,7 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -12,7 +13,7 @@ import java.util.Calendar;
  *
  * @author MrFELIS
  */
-public class Venda {
+public class Venda implements Serializable {
     private String numero;
     private ArrayList<Item> itens;
     private TipoPagamento tipoPago;

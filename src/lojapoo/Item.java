@@ -5,11 +5,13 @@
  */
 package lojapoo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MrFELIS
  */
-public class Item {
+public class Item implements Serializable{
     private int num;
     private Produto produto;
     private float quantidade;
