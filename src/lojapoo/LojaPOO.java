@@ -156,6 +156,8 @@ public class LojaPOO{
                        switch(opcao2){
                            case 1:
                                nome = JOptionPane.showInputDialog("Insira o nome do Cliente");
+                               cli=Cliente.procurarCliente(clientes,nome);
+                               if(cli!= null){ JOptionPane.showMessageDialog(null, "Cliente Ja Cadastrado");break;}
                                cpf =(JOptionPane.showInputDialog("Insira CPF"));
                                Cliente cl = new Cliente(nome, cpf);
                                clientes.add(cl);  
@@ -167,6 +169,8 @@ public class LojaPOO{
                                    switch(opcao2){
                                        case 1:
                                             codigo = JOptionPane.showInputDialog("Codigo do Produto Nacional");
+                                            pro=Produto.procurarProduto(produtos, codigo);
+                                            if(pro!= null){ JOptionPane.showMessageDialog(null, "Produto Ja Cadastrado");break;}
                                             desc =(JOptionPane.showInputDialog("Descricao do Produto Nacional"));
                                             valor =Float.parseFloat(JOptionPane.showInputDialog("Valor Produto Nacional"));
                                             taxaImposto =Float.parseFloat(JOptionPane.showInputDialog("Taxa Imposto Produto Nacional"));
@@ -175,6 +179,8 @@ public class LojaPOO{
                                             break;
                                        case 2:
                                             codigo = JOptionPane.showInputDialog("Codigo do Produto Importado");
+                                            pro=Produto.procurarProduto(produtos, msg);
+                                            if(pro!= null){ JOptionPane.showMessageDialog(null, "Produto Ja Cadastrado");break;}
                                             desc =(JOptionPane.showInputDialog("Descricao do Produto Importado"));
                                             valor =Float.parseFloat(JOptionPane.showInputDialog("Valor Produto Importado"));
                                             taxaImposto =Float.parseFloat(JOptionPane.showInputDialog("Taxa Imposto Produto Importado"));
@@ -212,7 +218,7 @@ public class LojaPOO{
                    msg=JOptionPane.showInputDialog("Registrar Comprar\nInsira nome do Cliente:");      
                    cli = Cliente.procurarCliente(clientes, msg);
                    if(cli != null){
-                       pg=TipoPagamento.tipoCartao();
+                       pg=TipoPagamento.tipo();
                        msg = JOptionPane.showInputDialog("Coloque o número da venda");
                        d = Calendar.getInstance();
                        vendas = new Venda(msg,pg,cli,d);
@@ -311,8 +317,8 @@ public class LojaPOO{
                                msg=JOptionPane.showInputDialog("\nInsira o Codigo da Venda");
                                String msg2=null;
                                for(Cliente cliente: clientes){
-                                   msg2+="\n";
-                                   msg2+=cliente.procurarVenda(cliente, msg);
+                                   msg2+="\n\n";
+                                   msg2+=cliente.buscaEspecifica(msg);
                                }
                                if(msg2==null){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
                                rel = new JanelaRelatorio(msg2);
@@ -322,12 +328,22 @@ public class LojaPOO{
                                opcao2 = menuCartao();
                                msg="";
                                for(Cliente cliente: clientes){
+                                   msg+="\n";
                                    msg+=cliente.buscaTipoPagamentoSimp(opcao2);
                                }
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
                                break;
                            case 9:
+                               opcao2 = menuCartao();
+                               msg="";
+                               
+                               for(Cliente cliente: clientes){
+                                   msg+="\n";
+                                   msg+=cliente.buscaTipoPagamentoDetalhado(opcao2);
+                               }
+                               rel = new JanelaRelatorio(msg);
+                               rel.exibir();
                                break;
                            case 10:
                                continua2=false;

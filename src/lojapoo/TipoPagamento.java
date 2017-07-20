@@ -24,7 +24,7 @@ abstract class TipoPagamento implements Serializable {
     } 
     abstract String exibirDados();
     
-    public static TipoPagamento tipoCartao(){
+    public static TipoPagamento tipo(){
         Boolean continua;
         int opcao;
         String msg, msg2;

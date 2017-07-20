@@ -57,14 +57,12 @@ public class Venda implements Serializable {
         return msg;
     }
     
-    public String exibirEspecifico(Cliente cli){
+    public String exibirEspecifico(){
         String msg="";
         for(Item item : itens){
-            msg+=cli.dadosCliente();
             msg+=exibirDados();
             msg+=item.dadosItem();
-        }
-        
+        } 
         return msg;
     }
     public String exibirDados(){
@@ -74,29 +72,75 @@ public class Venda implements Serializable {
                 "\nValor Total "+calcularTotal();
         return msg;
     }
-    
     public String buscaTipoPagamentoSimp(int tipo){
+        String msg="";
+        for(Item item : itens){
+            msg+="\nCodigo do Produto "+item.getCodigoProduto();
+            msg+="\nPreco Total "+item.calcularTotal();
+            msg+=buscaTipoPagamento(tipo);
+            msg+="\nData "+getData();
+        }
+        return msg;
+    }
+    
+    public String buscaTipoPagamentoDetalhado(int tipo){
+        String msg="";
+        for(Item item : itens){
+            msg+=item.dadosItem();
+            msg+=buscaTipoPagamento(tipo);
+            msg+="\nData "+getData();
+        }
+        return msg;
+    }
+    public String buscaTipoPagamento(int tipo){
         String msg2="";
         Dinheiro auxdinheiro;
         Cheque auxcheque;
         Cartao auxcartao;
-        msg2+="\nData "+getData();
         switch(tipo){
             case 1:
-                if(tipoPago.getTipoPagamento().equals("dinheiro")){
+                if(tipoPago.getTipoPagamento().equals("Dinheiro")){
                     auxdinheiro=(Dinheiro) tipoPago; 
                     msg2+="\nQuantia Recebida R$ "+auxdinheiro.getQuantia();
                     msg2+="\nTroco R$ ";
                 }
                 break;
             case 2:
-                if(tipoPago.getTipoPagamento().equals("cartao")){
+                if(tipoPago.getTipoPagamento().equals("Cartao")){
                     auxcartao= (Cartao) tipoPago;
                     msg2+=auxcartao.exibirDados();
                 }
                 break;
             case 3:
-                if(tipoPago.getTipoPagamento().equals("cheque")){
+                if(tipoPago.getTipoPagamento().equals("Cheque")){
+                auxcheque=(Cheque) tipoPago;
+                msg2+=auxcheque.exibirDados();
+                }
+                break;
+        }
+        return msg2;
+    }
+    public String buscaTipoPagamentoArray(int tipo){
+        String msg2="";
+        Dinheiro auxdinheiro;
+        Cheque auxcheque;
+        Cartao auxcartao;
+        switch(tipo){
+            case 1:
+                if(tipoPago.getTipoPagamento().equals("Dinheiro")){
+                    auxdinheiro=(Dinheiro) tipoPago; 
+                    msg2+="\nQuantia Recebida R$ "+auxdinheiro.getQuantia();
+                    msg2+="\nTroco R$ ";
+                }
+                break;
+            case 2:
+                if(tipoPago.getTipoPagamento().equals("Cartao")){
+                    auxcartao= (Cartao) tipoPago;
+                    msg2+=auxcartao.exibirDados();
+                }
+                break;
+            case 3:
+                if(tipoPago.getTipoPagamento().equals("Cheque")){
                 auxcheque=(Cheque) tipoPago;
                 msg2+=auxcheque.exibirDados();
                 }
