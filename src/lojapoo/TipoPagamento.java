@@ -28,6 +28,7 @@ abstract class TipoPagamento implements Serializable {
         Boolean continua;
         int opcao;
         String msg, msg2;
+        float dinheiro;
         TipoPagamento pg = null;
         do{
             continua=false;
@@ -39,7 +40,10 @@ abstract class TipoPagamento implements Serializable {
                         pg = new Cartao(msg,msg2);
                         break;
                     case 1:
-                        pg = new Dinheiro(Float.parseFloat(JOptionPane.showInputDialog("Informe a quantis recebida")));
+                        do{
+                            dinheiro=Float.parseFloat(JOptionPane.showInputDialog("Informe a quantia recebida"));
+                        }while(dinheiro<total);
+                        pg = new Dinheiro(dinheiro);
                         break;
                     case 3:  
                         msg = JOptionPane.showInputDialog("Coloque o nome do emissor");

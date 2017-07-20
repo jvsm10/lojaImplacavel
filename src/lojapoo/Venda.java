@@ -52,7 +52,7 @@ public class Venda implements Serializable {
         this.itens.add(itens);
     }
 
-    public float calcularTotal(){
+    public float calcularTotalVendas(){
         float total=0;
         for(Item item:itens){
            total+=item.calcularTotal();
@@ -68,25 +68,40 @@ public class Venda implements Serializable {
     public String exibirEspecifico(){
         String msg="";
         for(Item item : itens){
+            msg+="\n\n";
             msg+=exibirDados();
             msg+=item.dadosItem();
+            msg+="\nQuantidade deste Produto:  "+item.getQuantidade();
+            msg+="\nValor total do(s) Produto(s) R$:  "+item.calcularTotal();
         } 
         return msg;
     }
+    
+    public String exibirDadosItem(){
+        String msg="";
+        for(Item item : itens){
+            msg+="\n";
+            msg+=exibirDados();
+            msg+="\nQuantidade deste Produto:  "+item.getQuantidade();
+            msg+="\nValor total do(s) Produto(s) R$:  "+item.calcularTotal();
+        }
+        return msg;
+    }
     public String exibirDados(){
-        String msg="\nNumero da Compra "+numero+
-                "\nTipo de Pagamento "+tipoPago.getTipoPagamento()+
-                "\nData "+getData()+
-                "\nValor Total "+calcularTotal();
+        String msg="\nNumero da Venda:  "+numero+
+                "\nTipo de Pagamento:  "+tipoPago.getTipoPagamento()+
+                "\nData "+getData();    
         return msg;
     }
     public String buscaTipoPagamentoSimp(int tipo){
         String msg="";
         for(Item item : itens){
-            msg+="\nCodigo do Produto "+item.getCodigoProduto();
-            msg+="\nPreco Total "+item.calcularTotal();
+            msg+="\nNumero da Venda:  "+numero;
+            msg+="\nCodigo do Produto:  "+item.getCodigoProduto();
+            msg+="\nValor Total:  "+item.calcularTotal();
+            msg+="\nData:  "+getData();
             msg+=buscaTipoPagamento(tipo);
-            msg+="\nData "+getData();
+            
         }
         return msg;
     }
@@ -94,9 +109,11 @@ public class Venda implements Serializable {
     public String buscaTipoPagamentoDetalhado(int tipo){
         String msg="";
         for(Item item : itens){
+            msg+="\nNumero da Venda:  "+numero;
             msg+=item.dadosItem();
-            msg+=buscaTipoPagamento(tipo);
             msg+="\nData "+getData();
+            msg+=buscaTipoPagamento(tipo);
+            
         }
         return msg;
     }
@@ -110,7 +127,7 @@ public class Venda implements Serializable {
                 if(tipoPago.getTipoPagamento().equals("Dinheiro")){
                     auxdinheiro=(Dinheiro) tipoPago; 
                     msg2+="\nQuantia Recebida R$ "+auxdinheiro.getQuantia();
-                    msg2+="\nTroco R$ ";
+                    msg2+="\nTroco R$ "+(auxdinheiro.getQuantia()-calcularTotalVendas());
                 }
                 break;
             case 2:
@@ -128,6 +145,8 @@ public class Venda implements Serializable {
         }
         return msg2;
     }
+    
+
     public String buscaTipoPagamentoArray(int tipo){
         String msg2="";
         Dinheiro auxdinheiro;
@@ -138,7 +157,7 @@ public class Venda implements Serializable {
                 if(tipoPago.getTipoPagamento().equals("Dinheiro")){
                     auxdinheiro=(Dinheiro) tipoPago; 
                     msg2+="\nQuantia Recebida R$ "+auxdinheiro.getQuantia();
-                    msg2+="\nTroco R$ ";
+                    msg2+="\nTroco R$ "+(auxdinheiro.getQuantia()-calcularTotalVendas());
                 }
                 break;
             case 2:

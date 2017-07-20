@@ -34,8 +34,8 @@ public class Cliente implements Serializable {
         this.vendas.add(venda);
     }
     public String dadosCliente(){
-        String msg ="\nNome "+nome+
-                    "\nCPF "+ cpf;
+        String msg ="\nNome:  "+nome+
+                    "\nCPF:  "+ cpf;
         return msg;  
     }
     public static Cliente procurarCliente(ArrayList<Cliente> clientes, String msg ){
@@ -53,15 +53,15 @@ public class Cliente implements Serializable {
         else{
         for(Venda venda: vendas){
             msg+="\n";
-            msg+=venda.exibirDados();
-        }
+            msg+=venda.exibirDadosItem();
+       }
        }
       return msg;
     }
     public float totalAcumulado(){  //EXIBIR O TOTAL DO DAS VENDAS
         float total=0;
         for(Venda venda: vendas){
-            total+=venda.calcularTotal();
+            total+=venda.calcularTotalVendas();
         }
         return total;
     }
@@ -70,10 +70,9 @@ public class Cliente implements Serializable {
         
         for(Venda venda: vendas){
             msg+="\n";
-            msg+="\nNome "+nome;
-            msg+="\nCPF "+cpf;
-            msg+=venda.exibirDados();
-            venda.calcularTotal();
+            msg+="\nNome:  "+nome;
+            msg+="\nCPF:  "+cpf;
+            msg+=venda.exibirDadosItem();
         }
         return msg;
     }
@@ -82,6 +81,7 @@ public class Cliente implements Serializable {
         String msg2="";
         for(Venda venda:vendas){
             if(venda.getNumero().equals(msg)){
+            msg2+="\n";
             msg2+=dadosCliente();
             msg2+=venda.exibirEspecifico();
             }
@@ -90,14 +90,15 @@ public class Cliente implements Serializable {
     }
     
         public String buscaTipoPagamentoSimp(int tipo){
-        String msg="";
+        String msg;
         ArrayList<Venda> listaVenda = new ArrayList<>();
         if(tipo==1) listaVenda=tipoPago("Dinheiro");
         else if(tipo==2) listaVenda=tipoPago("Cartao");
         else if(tipo==3) listaVenda=tipoPago("Cheque");
-        if(listaVenda.isEmpty()) return msg="";
+        if(listaVenda.isEmpty()) return "";
         msg="\n";
         for(Venda venda: vendas){
+            msg+="\n";
             msg+=dadosCliente();
             msg+=venda.buscaTipoPagamentoSimp(tipo);
         }
@@ -105,15 +106,15 @@ public class Cliente implements Serializable {
     } 
         
     public String buscaTipoPagamentoDetalhado(int tipo){
-        String msg;
-        ArrayList<Venda> vendaPag = new ArrayList<>();
+        String msg="";
         ArrayList<Venda> listaVenda = new ArrayList<>();
         if(tipo==1) listaVenda=tipoPago("Dinheiro");
         else if(tipo==2) listaVenda=tipoPago("Cartao");
         else if(tipo==3) listaVenda=tipoPago("Cheque");
-        if(listaVenda.isEmpty()) return msg="";
+        if(listaVenda.isEmpty()) return "";
         msg="\n";
         for(Venda venda: vendas){
+            msg+="\n";
             msg+=dadosCliente();
             msg+=venda.buscaTipoPagamentoDetalhado(tipo);
         }

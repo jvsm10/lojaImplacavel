@@ -39,12 +39,12 @@ public class ProdutoImportado extends Produto {
         }
     @Override
     public String dadosProdutos(){
-    String msg ="\nProduto "+getCodigo()+
-            "\nDescricao "+getDescricao()+
-            "\nValor R$"+getValor()+
-            "\nTaxa de Imposto (%)"+taxaImposto+
-            "\nTaxa de Importacao (%)"+taxaImportacao+
-            "\nValor Total R$ "+valorTotal();
+    String msg ="\nCodigo do Produto:  "+getCodigo()+
+            "\nDescricao do Produto:  "+getDescricao()+
+            "\nValor R$:  "+getValor()+
+            "\nTaxa de Imposto (%):  "+taxaImposto+
+            "\nTaxa de Importacao (%):  "+taxaImportacao+
+            "\nValor Total R$:  "+valorTotal();
         return msg;  
     }
 }

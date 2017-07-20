@@ -39,7 +39,7 @@ public class Item implements Serializable{
     }
     
     public float calcularTotal(){
-        return quantidade * produto.getValor();
+        return quantidade * produto.valorTotal();
     }
     
     public String dadosItem(){

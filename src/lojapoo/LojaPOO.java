@@ -233,7 +233,7 @@ public class LojaPOO{
                        }
                        else JOptionPane.showMessageDialog(null, "Produto Não Encontrado");
                    }while(JOptionPane.showConfirmDialog(null, "Deseja adicionar mais itens?")==0);
-                       pg=TipoPagamento.tipo(vendas.calcularTotal());
+                       pg=TipoPagamento.tipo(vendas.calcularTotalVendas());
                        d = Calendar.getInstance();
                        vendas.setNumero(String.valueOf(numvenda));
                        vendas.setTipoPago(pg);
@@ -278,6 +278,7 @@ public class LojaPOO{
                                cli=Cliente.procurarCliente(clientes, msg);
                                if(cli!=null){
                                     msg=cli.gastosCliente();
+                                    msg+="\n\nTotal Gasto pelo Cliente:  "+cli.totalAcumulado();
                                     rel = new JanelaRelatorio(msg);
                                     rel.exibir();
                                }
@@ -312,21 +313,22 @@ public class LojaPOO{
                                msg="";
                                float total=0;
                                for(Cliente cliente : clientes){
+                                   msg+="\n";
                                    msg+=cliente.exibirVendasGeral();
                                    total+=cliente.totalAcumulado();
                                }
-                               msg+="\n\nPreço Total R$ "+total;
+                               msg+="\n\nPreço Total R$:  "+total;
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
                                break;
                            case 7:                               
                                msg=JOptionPane.showInputDialog("\nInsira o Codigo da Venda");
-                               String msg2=null;
+                               String msg2="";
                                for(Cliente cliente: clientes){
-                                   msg2+="\n\n";
+                                   msg2+="\n";
                                    msg2+=cliente.buscaEspecifica(msg);
                                }
-                               if(msg2==""){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
+                               if(msg2.isEmpty()){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
                                rel = new JanelaRelatorio(msg2);
                                rel.exibir();
                                break;
@@ -334,22 +336,19 @@ public class LojaPOO{
                                opcao2 = menuCartao();
                                msg="";
                                for(Cliente cliente: clientes){
-                                   
                                    msg+=cliente.buscaTipoPagamentoSimp(opcao2);
                                }
-                               if(msg==""){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
+                               if(msg.isEmpty()){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
                                break;
                            case 9:
                                opcao2 = menuCartao();
                                msg="";
-                               
                                for(Cliente cliente: clientes){
-                                   
                                    msg+=cliente.buscaTipoPagamentoDetalhado(opcao2);
                                }
-                               if(msg==""){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
+                               if(msg.isEmpty()){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
                                break;
