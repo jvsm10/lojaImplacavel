@@ -23,7 +23,7 @@ abstract class TipoPagamento {
     } 
     abstract String exibirDados();
     
-    public static TipoPagamento tipoCartao(){
+    public static TipoPagamento tipo(){
         Boolean continua;
         int opcao;
         String msg, msg2;

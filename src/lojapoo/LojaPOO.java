@@ -216,7 +216,7 @@ public class LojaPOO {
                    msg=JOptionPane.showInputDialog("Registrar Comprar\nInsira nome do Cliente:");      
                    cli = Cliente.procurarCliente(clientes, msg);
                    if(cli != null){
-                       pg=TipoPagamento.tipoCartao();
+                       pg=TipoPagamento.tipo();
                        msg = JOptionPane.showInputDialog("Coloque o número da venda");
                        d = Calendar.getInstance();
                        vendas = new Venda(msg,pg,cli,d);
@@ -316,7 +316,7 @@ public class LojaPOO {
                                String msg2=null;
                                for(Cliente cliente: clientes){
                                    msg2+="\n\n";
-                                   msg2+=cliente.procurarVenda(cliente, msg);
+                                   msg2+=cliente.buscaEspecifica(msg);
                                }
                                if(msg2==null){   JOptionPane.showMessageDialog(null,"Não há vendas Cadastrada com esse numero"); break;}
                                rel = new JanelaRelatorio(msg2);
@@ -333,6 +333,15 @@ public class LojaPOO {
                                rel.exibir();
                                break;
                            case 9:
+                               opcao2 = menuCartao();
+                               msg="";
+                               
+                               for(Cliente cliente: clientes){
+                                   msg+="\n";
+                                   msg+=cliente.buscaTipoPagamentoDetalhado(opcao2);
+                               }
+                               rel = new JanelaRelatorio(msg);
+                               rel.exibir();
                                break;
                            case 10:
                                continua2=false;
