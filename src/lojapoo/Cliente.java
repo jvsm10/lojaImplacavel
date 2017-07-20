@@ -6,6 +6,7 @@
 package lojapoo;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,21 +43,7 @@ public class Cliente {
         }
         return null;
     }
-    public String procurarVenda(Cliente cli, String msg ){
-        String msg2="Venda Especifica";
-        msg2+="";
-        Boolean aux=false;
-        for(Venda venda : vendas){
-                if(venda.getNumero().equals(msg)){
-                msg2+=venda.exibirEspecifico(cli);
-            
-                aux=true;
-            }
-        }
-        if(aux == false) msg2=""; 
-             return msg2;
-        }
-       
+
     public String gastosCliente(){ //EXIBE GASTO DE UM CLIENTE CASE 3
         String msg="Todos as comprar com o Cliente";
         if(vendas.isEmpty()){ 
@@ -89,14 +76,45 @@ public class Cliente {
         }
         return msg;
     }
-        
-    public String buscaTipoPagamentoSimp(int tipo){
+    
+    public String buscaEspecifica(String msg){
+        String msg2="";
+        for(Venda venda:vendas){
+            if(venda.getNumero().equals(msg)){
+            msg2+=dadosCliente();
+            msg2+=venda.exibirEspecifico();
+            }
+        }
+       return msg2;
+    }
+    
+        public String buscaTipoPagamentoSimp(int tipo){
         String msg="";
         for(Venda venda: vendas){
             msg+=dadosCliente();
-            msg+=venda.buscaTipoPagamento(tipo);
+            msg+=venda.buscaTipoPagamentoSimp(tipo);
         }
         return msg;
     } 
-  
+        
+    public String buscaTipoPagamentoDetalhado(int tipo){
+        String msg="";
+        ArrayList<Venda> vendaPag = new ArrayList<>();
+        for(Venda venda: vendas){
+            msg+=dadosCliente();
+            msg+=venda.buscaTipoPagamentoDetalhado(tipo);
+        }
+        return msg;
+    }   
+    
+
+    public ArrayList tipoPago(TipoPagamento pago){
+        ArrayList<Venda> listaVenda = new ArrayList<>();
+        for(Venda venda: vendas){
+            if(venda.getTipoPago().getTipoPagamento().equals(pago))
+                listaVenda.add(venda);
+        }
+        return listaVenda;
+    }
+            
 }

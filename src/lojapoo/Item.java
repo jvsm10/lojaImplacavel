@@ -19,15 +19,30 @@ public class Item {
         this.produto = produto;
         this.quantidade = quantidade;
     }
+
+    public float getQuantidade() {
+        return quantidade;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public float getValorProduto() {
+        return produto.getValor();
+    }
+
+    public String getCodigoProduto() {
+        return produto.getCodigo();
+    }
     
     public float calcularTotal(){
         return quantidade * produto.getValor();
     }
     
     public String dadosItem(){
-        String msg="\nCodigo do produto "+produto.getCodigo();
-        msg+="\nDescricao "+produto.getDescricao();
-        msg+="\nQuantidade do produto "+quantidade;
+        String msg; 
+        msg=produto.dadosProdutos();
         return msg;
     }
 }

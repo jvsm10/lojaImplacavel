@@ -19,16 +19,24 @@ public class Venda {
     private Cliente cliente;
     private Calendar data;
     
-    public Venda(String numero, TipoPagamento tipoPago, Cliente cliente, Calendar data) {
-        this.numero = numero;
-        this.tipoPago = tipoPago;
-        this.cliente = cliente;
-        this.data = data;
-        itens = new ArrayList<>();
-    
-    }
     public Venda(){
-        
+        itens = new ArrayList<>();
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setTipoPago(TipoPagamento tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
     }
 
     public String getNumero() {
@@ -56,14 +64,12 @@ public class Venda {
         return msg;
     }
     
-    public String exibirEspecifico(Cliente cli){
+    public String exibirEspecifico(){
         String msg="";
         for(Item item : itens){
-            msg+=cli.dadosCliente();
             msg+=exibirDados();
             msg+=item.dadosItem();
-        }
-        
+        } 
         return msg;
     }
     public String exibirDados(){
@@ -73,20 +79,59 @@ public class Venda {
                 "\nValor Total "+calcularTotal();
         return msg;
     }
-    public String buscaTipoPagamento(int tipo){
+    public String buscaTipoPagamentoSimp(int tipo){
         String msg="";
         for(Item item : itens){
-            msg+=item.dadosItem();
-            msg+=buscaTipoPagamentoSimp(tipo);
+            msg+="\nCodigo do Produto "+item.getCodigoProduto();
+            msg+="\nPreco Total "+item.calcularTotal();
+            msg+=buscaTipoPagamento(tipo);
+            msg+="\nData "+getData();
         }
         return msg;
     }
-    public String buscaTipoPagamentoSimp(int tipo){
-        String msg2;
+    
+    public String buscaTipoPagamentoDetalhado(int tipo){
+        String msg="";
+        for(Item item : itens){
+            msg+=item.dadosItem();
+            msg+=buscaTipoPagamento(tipo);
+            msg+="\nData "+getData();
+        }
+        return msg;
+    }
+    public String buscaTipoPagamento(int tipo){
+        String msg2="";
         Dinheiro auxdinheiro;
         Cheque auxcheque;
         Cartao auxcartao;
-        msg2="\nData "+getData();
+        switch(tipo){
+            case 1:
+                if(tipoPago.getTipoPagamento().equals("Dinheiro")){
+                    auxdinheiro=(Dinheiro) tipoPago; 
+                    msg2+="\nQuantia Recebida R$ "+auxdinheiro.getQuantia();
+                    msg2+="\nTroco R$ ";
+                }
+                break;
+            case 2:
+                if(tipoPago.getTipoPagamento().equals("Cartao")){
+                    auxcartao= (Cartao) tipoPago;
+                    msg2+=auxcartao.exibirDados();
+                }
+                break;
+            case 3:
+                if(tipoPago.getTipoPagamento().equals("Cheque")){
+                auxcheque=(Cheque) tipoPago;
+                msg2+=auxcheque.exibirDados();
+                }
+                break;
+        }
+        return msg2;
+    }
+    public String buscaTipoPagamentoArray(int tipo){
+        String msg2="";
+        Dinheiro auxdinheiro;
+        Cheque auxcheque;
+        Cartao auxcartao;
         switch(tipo){
             case 1:
                 if(tipoPago.getTipoPagamento().equals("Dinheiro")){
