@@ -229,7 +229,6 @@ public class LojaPOO{
                            int n = Integer.parseInt(JOptionPane.showInputDialog("Quantidade do item:"));
                            it = new Item(pro,n);
                            vendas.addItem(it);
-                           cli.addVenda(vendas);
                        }
                        else JOptionPane.showMessageDialog(null, "Produto Não Encontrado");
                    }while(JOptionPane.showConfirmDialog(null, "Deseja adicionar mais itens?")==0);
@@ -238,6 +237,7 @@ public class LojaPOO{
                        vendas.setNumero(String.valueOf(numvenda));
                        vendas.setTipoPago(pg);
                        vendas.setData(d);
+                       cli.addVenda(vendas);
                        
                    }
                    else JOptionPane.showMessageDialog(null, "Cliente Não Encontrado");
@@ -317,6 +317,7 @@ public class LojaPOO{
                                    msg+=cliente.exibirVendasGeral();
                                    total+=cliente.totalAcumulado();
                                }
+                               if(msg.isEmpty()){ JOptionPane.showMessageDialog(null, "Nao há vendas cadastradas"); break;}
                                msg+="\n\nPreço Total R$:  "+total;
                                rel = new JanelaRelatorio(msg);
                                rel.exibir();
@@ -336,7 +337,9 @@ public class LojaPOO{
                                opcao2 = menuCartao();
                                msg="";
                                for(Cliente cliente: clientes){
+                                   
                                    msg+=cliente.buscaTipoPagamentoSimp(opcao2);
+                                   msg+="\n";
                                }
                                if(msg.isEmpty()){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}
                                rel = new JanelaRelatorio(msg);
@@ -346,6 +349,7 @@ public class LojaPOO{
                                opcao2 = menuCartao();
                                msg="";
                                for(Cliente cliente: clientes){
+                                   msg+="\n";
                                    msg+=cliente.buscaTipoPagamentoDetalhado(opcao2);
                                }
                                if(msg.isEmpty()){JOptionPane.showMessageDialog(null, "Nenhuma Compra Efetuado por esse Pagamento"); break;}

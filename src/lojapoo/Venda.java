@@ -101,6 +101,7 @@ public class Venda implements Serializable {
             msg+="\nValor Total:  "+item.calcularTotal();
             msg+="\nData:  "+getData();
             msg+=buscaTipoPagamento(tipo);
+            msg+="\n\n";
             
         }
         return msg;
@@ -113,6 +114,7 @@ public class Venda implements Serializable {
             msg+=item.dadosItem();
             msg+="\nData "+getData();
             msg+=buscaTipoPagamento(tipo);
+            msg+="\n\n";
             
         }
         return msg;

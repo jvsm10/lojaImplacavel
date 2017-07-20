@@ -24,7 +24,7 @@ public class Cartao extends TipoPagamento{
     
     @Override
     public String exibirDados(){
-        String msg="\nTipo de Pagamento "+tipoPagamento+"\nNome "+nome+"\nNumero "+numero;
+        String msg="\nTipo de Pagamento:  "+tipoPagamento+"\nNome do Titular do Cartao:  "+nome+"\nNumero do Cartao:  "+numero;
         return msg;
     }
 }

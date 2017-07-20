@@ -24,7 +24,7 @@ public class Cheque extends TipoPagamento{
     @Override
     public String exibirDados() {
         String msg;
-        msg="\nNome Emissor "+nomeEmissor+"\nNumero do Cheque "+numeroCheque;
+        msg="\nNome Emissor:  "+nomeEmissor+"\nNumero do Cheque:  "+numeroCheque;
         return msg;
     }
     

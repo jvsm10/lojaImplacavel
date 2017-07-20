@@ -90,16 +90,15 @@ public class Cliente implements Serializable {
     }
     
         public String buscaTipoPagamentoSimp(int tipo){
-        String msg;
+        String msg="";
         ArrayList<Venda> listaVenda = new ArrayList<>();
         if(tipo==1) listaVenda=tipoPago("Dinheiro");
         else if(tipo==2) listaVenda=tipoPago("Cartao");
         else if(tipo==3) listaVenda=tipoPago("Cheque");
         if(listaVenda.isEmpty()) return "";
-        msg="\n";
         for(Venda venda: vendas){
-            msg+="\n";
             msg+=dadosCliente();
+            msg+="\n";
             msg+=venda.buscaTipoPagamentoSimp(tipo);
         }
         return msg;
@@ -112,11 +111,11 @@ public class Cliente implements Serializable {
         else if(tipo==2) listaVenda=tipoPago("Cartao");
         else if(tipo==3) listaVenda=tipoPago("Cheque");
         if(listaVenda.isEmpty()) return "";
-        msg="\n";
         for(Venda venda: vendas){
-            msg+="\n";
             msg+=dadosCliente();
+            msg+="\n";
             msg+=venda.buscaTipoPagamentoDetalhado(tipo);
+            
         }
         return msg;
     }   
