@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class LojaPOO{
 
     private static int menu(){
-        int opcao;
+        int opcao=0;
         Boolean continua;
         do{
         continua=true;  
