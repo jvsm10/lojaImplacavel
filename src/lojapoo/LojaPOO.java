@@ -34,7 +34,8 @@ public class LojaPOO{
                 "\n5 - Carregar Dados"+
                 "\n6 - Sair";
         String opc=JOptionPane.showInputDialog(menu);
-        if( opc == null) return 6;
+        if(opc==null) return 6;
+        else if( opc.isEmpty()) return 6;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<7) continua=false;
         }while(continua);
@@ -51,7 +52,8 @@ public class LojaPOO{
                 "\n2 - Produto"+
                 "\n3 - Voltar";
         String opc=JOptionPane.showInputDialog(menu);
-        if(opc == null) return 4;
+        if(opc == null) return 3;
+        else if(opc.isEmpty()) return 3;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<7) continua=false;
         }while(continua);
@@ -68,7 +70,8 @@ public class LojaPOO{
                 "\n2 - Produto Internacional"+
                 "\n3 - Voltar";
                 String opc=JOptionPane.showInputDialog(menu);
-        if(opc == null) return 4;
+        if(opc == null) return 3;
+        else if(opc.isEmpty()) return 3;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<4) continua=false;
         }while(continua);
@@ -92,7 +95,8 @@ public class LojaPOO{
                 "\n9 - Listar Venda por tipo de pagamento detalhado"+
                 "\n10 - Voltar";
         String opc=JOptionPane.showInputDialog(menu);
-        if(opc == null) return 11;
+        if(opc == null) return 10;
+        else if(opc.isEmpty()) return 10;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<11) continua=false;
     }while(continua);
@@ -108,7 +112,8 @@ public class LojaPOO{
                     "\n2 - Cartao "+
                     "\n3 - Cheque";
             String opc= JOptionPane.showInputDialog(menu);
-            if(opc == null) return 4;
+            if(opc == null) return 3;
+        else if(opc.isEmpty()) return 3;
             opcao=Integer.parseInt(opc);
             if(opcao>=1 && opcao<=3) continua=false;
         }while(continua);
@@ -430,7 +435,5 @@ public class LojaPOO{
                    break;
            }
         }while(continua);
-    
-        //testandoz\z\
 }
 }
