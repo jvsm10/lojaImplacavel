@@ -231,7 +231,12 @@ public class LojaPOO{
                        msg=JOptionPane.showInputDialog("Insira o codigo do Produto");
                        pro = Produto.procurarProduto(produtos, msg);
                        if(pro != null){
-                           int n = Integer.parseInt(JOptionPane.showInputDialog("Quantidade do item:"));
+                           do{
+                           msg =  JOptionPane.showInputDialog("Quantidade do item:");
+                           if(msg==null)
+                               msg="";
+                           }while(msg.isEmpty());
+                           int n = Integer.parseInt(msg);
                            it = new Item(pro,n);
                            vendas.addItem(it);
                        }
@@ -243,7 +248,6 @@ public class LojaPOO{
                        vendas.setTipoPago(pg);
                        vendas.setData(d);
                        cli.addVenda(vendas);
-                       
                    }
                    else JOptionPane.showMessageDialog(null, "Cliente Não Encontrado");
                    break;
