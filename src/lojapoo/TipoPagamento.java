@@ -32,7 +32,10 @@ abstract class TipoPagamento implements Serializable {
         TipoPagamento pg = null;
         do{
             continua=false;
-            opcao =Integer.parseInt(JOptionPane.showInputDialog("Escolha o tipo de pagamento: \n1 - Dinheiro\n2 - Cartão\n3 - Cheque"));
+            
+            msg= JOptionPane.showInputDialog("Escolha o tipo de pagamento: \n1 - Dinheiro\n2 - Cartão\n3 - Cheque");
+            if(msg.isEmpty()) msg="0";
+            opcao =Integer.parseInt(msg);
             switch(opcao){
                     case 2:  
                         msg = JOptionPane.showInputDialog("Coloque o número do cartão");

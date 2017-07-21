@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class LojaPOO{
 
     private static int menu(){
-        int opcao;
+        int opcao=0;
         Boolean continua;
         do{
         continua=true;  
@@ -34,7 +34,8 @@ public class LojaPOO{
                 "\n5 - Carregar Dados"+
                 "\n6 - Sair";
         String opc=JOptionPane.showInputDialog(menu);
-        if( opc == null) return 6;
+        if( opc == null ) return 6;
+        if(opc.isEmpty()) opc="0";
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<7) continua=false;
         }while(continua);
@@ -52,6 +53,7 @@ public class LojaPOO{
                 "\n3 - Voltar";
         String opc=JOptionPane.showInputDialog(menu);
         if(opc == null) return 4;
+        if(opc.isEmpty()) opc="0";
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<7) continua=false;
         }while(continua);
@@ -69,6 +71,7 @@ public class LojaPOO{
                 "\n3 - Voltar";
                 String opc=JOptionPane.showInputDialog(menu);
         if(opc == null) return 4;
+        if(opc.isEmpty()) opc="0";
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<4) continua=false;
         }while(continua);
@@ -93,6 +96,7 @@ public class LojaPOO{
                 "\n10 - Voltar";
         String opc=JOptionPane.showInputDialog(menu);
         if(opc == null) return 11;
+        if(opc.isEmpty()) opc="0";
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<11) continua=false;
     }while(continua);
@@ -109,6 +113,7 @@ public class LojaPOO{
                     "\n3 - Cheque";
             String opc= JOptionPane.showInputDialog(menu);
             if(opc == null) return 4;
+            if(opc.isEmpty()) opc="0";
             opcao=Integer.parseInt(opc);
             if(opcao>=1 && opcao<=3) continua=false;
         }while(continua);
