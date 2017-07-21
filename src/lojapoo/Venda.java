@@ -65,7 +65,7 @@ public class Venda implements Serializable {
         return msg;
     }
     
-    public String exibirEspecifico(){111
+    public String exibirEspecifico(){
         String msg="";
         for(Item item : itens){
             msg+="\n\n";
