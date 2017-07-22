@@ -5,6 +5,7 @@
  */
 package lojapoo;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -35,7 +36,7 @@ public class LojaPOO{
                 "\n6 - Sair";
         String opc=JOptionPane.showInputDialog(menu);
         if(opc==null) return 6;
-        else if( opc.isEmpty()) return 6;
+        else if( opc.isEmpty()) return 0;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<7) continua=false;
         }while(continua);
@@ -53,7 +54,7 @@ public class LojaPOO{
                 "\n3 - Voltar";
         String opc=JOptionPane.showInputDialog(menu);
         if(opc == null) return 3;
-        else if(opc.isEmpty()) return 3;
+        else if(opc.isEmpty()) return 0;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<7) continua=false;
         }while(continua);
@@ -71,7 +72,7 @@ public class LojaPOO{
                 "\n3 - Voltar";
                 String opc=JOptionPane.showInputDialog(menu);
         if(opc == null) return 3;
-        else if(opc.isEmpty()) return 3;
+        else if(opc.isEmpty()) return 0;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<4) continua=false;
         }while(continua);
@@ -96,7 +97,7 @@ public class LojaPOO{
                 "\n10 - Voltar";
         String opc=JOptionPane.showInputDialog(menu);
         if(opc == null) return 10;
-        else if(opc.isEmpty()) return 10;
+        else if(opc.isEmpty()) return 0;
         opcao=Integer.parseInt(opc);
         if(opcao>0 && opcao<11) continua=false;
     }while(continua);
@@ -112,8 +113,8 @@ public class LojaPOO{
                     "\n2 - Cartao "+
                     "\n3 - Cheque";
             String opc= JOptionPane.showInputDialog(menu);
-            if(opc == null) return 3;
-        else if(opc.isEmpty()) return 3;
+            if(opc == null) return 0;
+        else if(opc.isEmpty()) return 0;
             opcao=Integer.parseInt(opc);
             if(opcao>=1 && opcao<=3) continua=false;
         }while(continua);
@@ -142,6 +143,7 @@ public class LojaPOO{
 
 
         String msg = null;
+        String msg2;
         Cliente cli;
         Produto pro;
         Venda vendas;
@@ -161,10 +163,18 @@ public class LojaPOO{
                        continua2=true;
                        switch(opcao2){
                            case 1:
+                               do{
                                nome = JOptionPane.showInputDialog("Insira o nome do Cliente");
+                               if(nome == null)
+                                   nome = "";
+                               }while(nome.isEmpty());
                                cli=Cliente.procurarCliente(clientes,nome);
                                if(cli!= null){ JOptionPane.showMessageDialog(null, "Cliente Ja Cadastrado");break;}
+                               do{
                                cpf =(JOptionPane.showInputDialog("Insira CPF"));
+                               if(nome == null)
+                                   cpf = "";
+                               }while(cpf.isEmpty());
                                Cliente cl = new Cliente(nome, cpf);
                                clientes.add(cl);  
                                break;
@@ -174,23 +184,64 @@ public class LojaPOO{
                                    opcao2=menuCadastrarProduto(); 
                                    switch(opcao2){
                                        case 1:
+                                           do{
                                             codigo = JOptionPane.showInputDialog("Codigo do Produto Nacional");
+                                            if(codigo == null)
+                                                codigo = "";
+                                            }while(codigo.isEmpty());
                                             pro=Produto.procurarProduto(produtos, codigo);
                                             if(pro!= null){ JOptionPane.showMessageDialog(null, "Produto Ja Cadastrado");break;}
+                                            do{
                                             desc =(JOptionPane.showInputDialog("Descricao do Produto Nacional"));
-                                            valor =Float.parseFloat(JOptionPane.showInputDialog("Valor Produto Nacional"));
-                                            taxaImposto =Float.parseFloat(JOptionPane.showInputDialog("Taxa Imposto Produto Nacional"));
+                                            if(desc == null)
+                                                desc = "";
+                                            }while(desc.isEmpty());
+                                            do{
+                                            msg2 = (JOptionPane.showInputDialog("Valor Produto Nacional"));
+                                            if(msg2 == null)
+                                                msg2 = "";
+                                            }while(msg2.isEmpty());
+                                            valor =Float.parseFloat(msg2);
+                                            do{
+                                            msg2=(JOptionPane.showInputDialog("Taxa Imposto Produto Nacional"));
+                                            if(msg2 == null)
+                                                msg2 = "";
+                                            }while(msg2.isEmpty());
+                                            taxaImposto =Float.parseFloat(msg2);
                                             Produto prod = new ProdutoNacional(taxaImposto, codigo,desc, valor);
                                             produtos.add(prod);
                                             break;
                                        case 2:
-                                            codigo = JOptionPane.showInputDialog("Codigo do Produto Importado");
-                                            pro=Produto.procurarProduto(produtos, msg);
+                                           do{ 
+                                           codigo = JOptionPane.showInputDialog("Codigo do Produto Importado");
+                                            if(codigo == null)
+                                                codigo = "";
+                                            }while(codigo.isEmpty());
+                                            pro=Produto.procurarProduto(produtos, codigo);
                                             if(pro!= null){ JOptionPane.showMessageDialog(null, "Produto Ja Cadastrado");break;}
+                                            do{
                                             desc =(JOptionPane.showInputDialog("Descricao do Produto Importado"));
-                                            valor =Float.parseFloat(JOptionPane.showInputDialog("Valor Produto Importado"));
-                                            taxaImposto =Float.parseFloat(JOptionPane.showInputDialog("Taxa Imposto Produto Importado"));
-                                            taxaImportacao = Float.parseFloat(JOptionPane.showInputDialog("Taxa Importacao"));
+                                            if(desc == null)
+                                                desc = "";
+                                            }while(desc.isEmpty());
+                                            do{
+                                            msg2 = (JOptionPane.showInputDialog("Valor Produto Importado"));
+                                            if(msg2 == null)
+                                                msg2 = "";
+                                            }while(msg2.isEmpty());
+                                            valor =Float.parseFloat(msg2);
+                                            do{
+                                            msg2 =(JOptionPane.showInputDialog("Taxa Imposto Produto Importado"));
+                                            if(msg2 == null)
+                                                msg2 = "";
+                                            }while(msg2.isEmpty());
+                                            taxaImposto =Float.parseFloat(msg2);
+                                            do{
+                                            msg2 = (JOptionPane.showInputDialog("Taxa Importacao"));
+                                            if(msg2 == null)
+                                                msg2 = "";
+                                            }while(msg2.isEmpty());
+                                            taxaImportacao = Float.parseFloat(msg2);
                                             prod = new ProdutoImportado(taxaImposto, taxaImportacao, codigo,desc, valor);
                                             produtos.add(prod);
                                            break;   
@@ -272,7 +323,11 @@ public class LojaPOO{
                                if(clientes.isEmpty()) JOptionPane.showMessageDialog(null, "Nao há Clientes Cadastrados");
                                else{
                                    Boolean aux=true;
+                                   do{
                                    msg=JOptionPane.showInputDialog("Insira Nome Cliente");
+                                   if(msg == null)
+                                       msg = "-1";
+                                    }while(msg.isEmpty());
                                    for(Cliente cliente: clientes){
                                        if(cliente.getNome().equals(msg)){
                                            JOptionPane.showMessageDialog(null, cliente.dadosCliente());
@@ -283,7 +338,11 @@ public class LojaPOO{
                                }
                                break;
                            case 3:
+                               do{
                                msg=JOptionPane.showInputDialog("Insira Nome Cliente");
+                               if(msg == null)
+                                                msg = "-1";
+                                            }while(msg.isEmpty());
                                cli=Cliente.procurarCliente(clientes, msg);
                                if(cli!=null){
                                     msg=cli.gastosCliente();
@@ -308,7 +367,11 @@ public class LojaPOO{
                                if(produtos.isEmpty()) JOptionPane.showMessageDialog(null, "Nao há Produto Cadastrados");
                                else{
                                    Boolean aux=true;
+                                   do{
                                    msg=JOptionPane.showInputDialog("Insira Codigo Produto");
+                                   if(msg == null)
+                                                msg = "-1";
+                                            }while(msg.isEmpty() || msg =="-1");
                                    for(Produto produto: produtos){
                                        if(produto.getCodigo().equals(msg)){
                                            JOptionPane.showMessageDialog(null, produto.dadosProdutos());
@@ -332,8 +395,12 @@ public class LojaPOO{
                                rel.exibir();
                                break;
                            case 7:                               
+                               do{
                                msg=JOptionPane.showInputDialog("\nInsira o Codigo da Venda");
-                               String msg2="";
+                               if(msg == null)
+                                    msg = "-1";
+                               }while(msg.isEmpty() || msg =="-1");
+                               msg2="";
                                for(Cliente cliente: clientes){
                                    msg2+="\n";
                                    msg2+=cliente.buscaEspecifica(msg);
@@ -382,7 +449,7 @@ public class LojaPOO{
                        JOptionPane.showMessageDialog(null, "NÂO HÁ CLIENTES E PRODUTOS CADASTRADOS!\n CADASTRE ANTES PARA SALVAR");
                    }
                    
-                   if(clientes.isEmpty() == false){
+                   else{ if(clientes.isEmpty() == false){
                         FileOutputStream fos = new FileOutputStream("clientes.dat");
                         ObjectOutputStream oos = new ObjectOutputStream(fos);
          
@@ -406,22 +473,23 @@ public class LojaPOO{
                    
                   
                    JOptionPane.showMessageDialog(null, "DADOS SALVOS COM SUCESSO!");
-                   
+                   }
                    break;
                    
               //===========================CASE 5=====================================================
                case 5:
-      
+                   File f = new File("clientes.dat");
+                   if(f.exists()){
                    FileInputStream fis = new FileInputStream("clientes.dat");
                    ObjectInputStream ois = new ObjectInputStream(fis);
-                   
                    int numClientes = ois.readInt();
                    for(int i=0;i<numClientes;i++){
                        cli = (Cliente)ois.readObject();
                        clientes.add(i, cli);
                    }
                    fis.close();
-                   
+                   f = new File("produtos.dat");
+                   if(f.exists()){
                    fis = new FileInputStream("produtos.dat");
                    ois = new ObjectInputStream(fis);
                    
@@ -431,8 +499,11 @@ public class LojaPOO{
                        produtos.add(i, pro);
                    }
                    fis.close();
-                   
+                   }
                    JOptionPane.showMessageDialog(null, "DADOS CARREGADOS COM SUCESSO!");
+                   }
+                   else JOptionPane.showMessageDialog(null, "NÃO HÁ DADOS PARA CARREGAR!");
+                   
                    break;
                case 6:
                    continua=false;

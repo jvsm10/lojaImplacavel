@@ -42,6 +42,7 @@ public class ProdutoImportado extends Produto {
     String msg ="\nCodigo do Produto:  "+getCodigo()+
             "\nDescricao do Produto:  "+getDescricao()+
             "\nValor R$:  "+getValor()+
+            "\nProduto Importado"+
             "\nTaxa de Imposto (%):  "+taxaImposto+
             "\nTaxa de Importacao (%):  "+taxaImportacao+
             "\nValor Total R$:  "+valorTotal();

@@ -43,6 +43,7 @@ public class ProdutoNacional extends Produto{
       String msg ="\nCodigo do Produto:  "+getCodigo()+
             "\nDescricao do Produto:  "+getDescricao()+
             "\nValor R$:  "+getValor()+
+            "\nProduto Nacional"+
             "\nTaxa de Imposto (%):  "+taxaImposto+
             "\nValor Total R$:  "+valorTotal();
         return msg;  

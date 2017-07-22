@@ -82,6 +82,6 @@ abstract class TipoPagamento implements Serializable {
                         break;
                        }
         }while(continua);
-        return null;
+        return pg;
     }
 }
